@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="react-project">
+    <output-path>$PROJECT_DIR$/out/artifacts/react_project</output-path>
+    <root id="archive" name="react-project.war" />
+  </artifact>
+</component>

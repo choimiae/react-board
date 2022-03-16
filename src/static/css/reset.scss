@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+$font14 : 14px;
+$lh14: 1.4;
+$black: #000;
+$lightgray:#aaa;
+$linecolor:#dedede;
+
+@mixin input ($h, $lh, $pd) {
+    border:none;
+    border-bottom: 1px solid $linecolor;
+    background: #fff;
+    height: $h;
+    line-height: $lh;
+    padding: $pd;
+}
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: $font14;
+    line-height: $lh14;
+    color: $black;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    -webkit-text-size-adjust: none;
+    overflow-x: hidden;
+}
+img {
+    border: 0;
+    vertical-align: top;
+    max-width: 100%;
+}
+hr {
+    display: none;
+}
+ul, ol, dl, dt, dd, li {
+    list-style: none;
+}
+table, th, td {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-weight: normal;
+}
+caption {
+    display: block;
+    text-indent: -9999em;
+    overflow: hidden;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+fieldset, blockquote, iframe, button {
+    border: none;
+}
+a {
+    text-decoration: none;
+}
+button {
+    background: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-text-size-adjust: none;
+}
+input[type="submit"], input[type="button"], input[type="reset"] {
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+section, nav, article, aside, header, footer, main {
+    display: block;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+input[type="text"], input[type="search"], input[type="tel"], input[type="number"], input[type="password"] {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+::-webkit-input-placeholder, ::-moz-placeholder, ::-ms-input-placeholder, ::-moz-placeholder {
+    color: $lightgray;
+}
+::-ms-clear, ::-ms-reveal {
+    display: none;
+}
+textarea, button,  input {
+    -webkit-appearance: none;
+}
+input[type="text"], input[type="search"], input[type="number"], input[type="email"], input[type="password"], input[type="file"] {
+    @include input(40px, 30px, 0 10px);
+}
+select {
+    border-radius: 0;
+    @include input(40px, 30px, 0 0 0 10px);
+}
+textarea {
+    @include input(auto, $lh14, 10px);
+}

@@ -1,0 +1,353 @@
+@charset "utf-8";
+
+@import "reset"; // 리셋 css
+@import "layout"; // 레이아웃 관련 css
+
+@mixin button {
+    display: inline-block;
+    vertical-align: top;
+    padding:0 25px;
+    height:40px;
+    line-height: 38px;
+    text-align: center;
+    margin:0 5px;
+    min-width: 100px;
+    border:1px solid transparent;
+    @include round(2px);
+}
+@mixin round ($radius: 0) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+@mixin transform ($posX:0, $posY:0, $rotate: 0, $scale:1) {
+    transform: translate($posX, $posY) rotate($rotate) scale($scale);
+    -webkit-transform: translate($posX, $posY) rotate($rotate) scale($scale);
+}
+
+
+/* title */
+.comp-title-box {
+    border-bottom:1px solid #000;
+    margin-bottom:30px;
+}
+.comp-title {
+    font-size: 20px;
+    color:#000;
+    font-weight: 500;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    padding-bottom:20px;
+    &::before {
+        display: block;
+        content:"";
+        width: 100%;
+        height:2px;
+        background:#000;
+        position: absolute;
+        left:0;
+        bottom:-1px;
+    }
+}
+
+
+/* board */
+.comp-board-list-item {
+    margin:20px 0;
+}
+.comp-board-list-lnk {
+    display: block;
+    padding:20px 20px 20px 80px;
+    border: 1px solid $linecolor;
+    position: relative;
+    &:hover {
+        border-color:#000;
+    }
+    .num {
+        position: absolute;
+        left:35px;
+        top:50%;
+        @include transform(0, -50%, 0, 1);
+    }
+    .tit {
+        color:#000;
+        font-size: 16px;
+        position: relative;
+        margin-bottom:15px;
+    }
+    .desc-cont {
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 20px;
+        color:#a1a1a1;
+    }
+}
+.comp-board-empty {
+    text-align: center;
+    font-size:16px;
+    padding:30px 0;
+    font-weight: 500;
+    &.hide {
+        display: none;
+    }
+}
+.comp-board-view .tit {
+    margin-bottom: 10px;
+    border-bottom:1px solid $linecolor;
+    padding-bottom:10px;
+}
+.comp-basic-row {
+    width: 100%;
+    margin:40px 0;
+    &.hide {
+        display: none;
+    }
+    .tit {
+        font-weight: 500;
+        font-size:16px;
+    }
+    .desc {
+        color: #747474;
+        font-size: 15px;
+        display: flex;
+    }
+    .btn .comp-btn {
+        width: 100%;
+    }
+    .img {
+        margin-bottom:10px;
+    }
+}
+.form-basic {
+    width:100%;
+}
+[data-error='true'] {
+    border-color: red !important;
+}
+
+
+
+/* button */
+.comp-btn-wrap {
+    margin:30px -5px 0;
+    text-align: center;
+    &::after {
+        display: block;
+        content:"";
+        clear: both;
+    }
+}
+.comp-btn-primary {
+    @include button;
+    border-color:#000;
+    background:#000;
+    color:#fff;
+}
+.comp-btn-default {
+    @include button;
+    border-color:#495057;
+    color:#495057;
+}
+.comp-btn-danger {
+    @include button;
+    border-color:#FFAD46;
+    background: #FFAD46;
+    color: #fff;
+}
+.comp-btn-info {
+    @include button;
+    border-color:#686868;
+    background: #686868;
+    color: #fff;
+}
+.comp-btn {
+    &.comp-btn-pos-left {
+        float:left;
+    }
+    &.comp-btn-pos-right {
+        float:right;
+    }
+}
+
+
+
+/* paging */
+.comp-paging {
+    margin-top:30px;
+    text-align: center;
+}
+.comp-paging-item {
+    display: inline-block;
+    vertical-align: top;
+    margin:0 5px;
+    color:#000;
+    width:35px;
+    height:35px;
+    line-height: 35px;
+    &.active {
+        color:#fff;
+        background: #000;
+    }
+}
+
+
+
+/* loading */
+.comp-loading {
+    display: table;
+    width:100%;
+    height:100%;
+    table-layout: fixed;
+    position: fixed;
+    left:0;
+    top:0;
+    background:#fff;
+    z-index: 9998;
+}
+.comp-loading-box {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width:100%;
+    height:100%;
+    padding-bottom:50px;
+}
+.comp-loading-item {
+    display: block;
+    width: 44px;
+    height: 44px;
+    background:#fff;
+    margin: 0 auto;
+    position: relative;
+    @include round(100%);
+}
+.comp-loading-circle {
+    display: block;
+    width: 44px;
+    height: 44px;
+    border: 4px solid #000;
+    border-top-color: #fff;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin:-15px 0 0 -15px;
+    animation: spin 2s ease-in-out infinite;
+    -webkit-animation: spin 2s ease-in-out infinite;
+    @include round(50%);
+}
+@keyframes spin {
+    to { @include transform(0, 0, 360deg, 1); }
+}
+@-webkit-keyframes spin {
+    to { @include transform(0, 0, 360deg, 1); }
+}
+
+
+
+/* search */
+.comp-search {
+    margin:30px 0;
+    &::after {
+        display: block;
+        content:"";
+        clear: both;
+    }
+    .box {
+        max-width: 500px;
+        width:100%;
+        float: right;
+        display: flex;
+        display: -webkit-flex;
+    }
+    .item {
+        padding:0 5px;
+        flex:3 1 0;
+        &.sel{
+            flex: 1 1 0;
+        }
+        &.btn {
+            flex:0 1 0;
+        }
+    }
+}
+
+
+/* user info */
+.user-info {
+    text-align: right;
+    margin-bottom:20px;
+    font-size:15px;
+    .text,
+    .btn {
+        display: inline-block;
+        vertical-align: middle;
+        .comp-btn {
+            height:30px;
+            line-height: 30px;
+            background:#ccd0d4;
+            border:none;
+            color:#fff;
+            min-width: auto;
+            padding:0 10px;
+            font-size:13px;
+            margin-left:10px;
+        }
+    }
+    .name {
+        font-weight: 600;
+        color:#000;
+    }
+}
+
+
+/* img preview */
+.img-preview {
+    margin:-30px -10px 0;
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    .img {
+        float: left;
+        width:25%;
+        padding:10px;
+        position: relative;
+        text-align: center;
+        img {
+            height: 100px;
+        }
+    }
+    .close {
+        position: absolute;
+        right:10px;
+        top:10px;
+        z-index: 10;
+        height:30px;
+        line-height:30px;
+        background:rgba(0,0,0,0.6);
+        color:#fff;
+        padding:0 20px;
+        font-size:13px;
+    }
+}
+
+/* chat */
+.chat-item {
+    padding:15px 20px;
+    border-bottom:1px solid #eee;
+    &:nth-child(even) {
+        background:#f7f7f7;
+    }
+    .name {
+        font-weight: 600;
+        margin-bottom:5px;
+        color:#333;
+    }
+    .msg {
+        color:#404040;
+    }
+}
+.chat-use-box {
+    padding:0 20px;
+    margin-bottom:100px;
+}
